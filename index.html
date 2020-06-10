@@ -569,21 +569,35 @@
 
 			gtag('config', 'UA-146412918-1');
 		</script>
-		<div id="fb-root">
-		</div>
-		<script>
-			(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s);
-				js.id = id;
-				js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
-				fjs.parentNode.insertBefore(js, fjs);
-			} (document, 'script', 'facebook-jssdk'));
-		</script>
-		<div class="fb-customerchat" attribution=setup_tool page_id="644651865671736"
-		logged_in_greeting="直接透過 Messenger 聯絡我們" logged_out_greeting="直接透過 Messenger 聯絡我們">
-		</div>
+	
+	<!-- Load Facebook SDK for JavaScript -->
+      <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v7.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/zh_TW/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+      <!-- Your Chat Plugin code -->
+      <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="644651865671736"
+  logged_in_greeting="嗨~有需要什麼協助嗎?"
+  logged_out_greeting="嗨~有需要什麼協助嗎?">
+      </div>
+		
+		
+		
 	</body>
 
 </html>
