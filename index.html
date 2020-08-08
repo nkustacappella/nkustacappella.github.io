@@ -81,8 +81,7 @@
 				request.execute(function (resp) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.items) {
-							if(resp.items[key].snippet.thumbnails != 0) { //非私人影片才會顯示，要不然會噴錯
-								console.log(resp.items[key].snippet.thumbnails);
+							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
 								document.getElementById('videoInfo').innerHTML += 
 									'<div class="col-md-4 col-sm-6">' +
 									'	<div class="item">' +
