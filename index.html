@@ -81,23 +81,25 @@
 				request.execute(function (resp) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.items) {
-							document.getElementById('videoInfo').innerHTML += 
-								'<div class="col-md-4 col-sm-6">' +
-								'	<div class="item">' +
-								'		<div class="thumb">' +
-								'			<a href="https://www.youtube.com/watch?v=' + resp.items[key].contentDetails.videoId + '" target="_blank">' +
-								'				<div class="hover-effect">' +
-								'					<div class="hover-content">' +
-								'						<h2>' + resp.items[key].snippet.title + '</h2>' +
-								'					</div>' +
-								'				</div>' +
-								'			</a>' +
-								'			<div class="image">' +
-								'				<img src="' + resp.items[key].snippet.thumbnails.maxres.url + '">' +
-								'			</div>' +
-								'		</div>' +
-								'	</div>' +
-								'</div>';
+							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
+								document.getElementById('videoInfo').innerHTML += 
+									'<div class="col-md-4 col-sm-6">' +
+									'	<div class="item">' +
+									'		<div class="thumb">' +
+									'			<a href="https://www.youtube.com/watch?v=' + resp.items[key].contentDetails.videoId + '" target="_blank">' +
+									'				<div class="hover-effect">' +
+									'					<div class="hover-content">' +
+									'						<h2>' + resp.items[key].snippet.title + '</h2>' +
+									'					</div>' +
+									'				</div>' +
+									'			</a>' +
+									'			<div class="image">' +
+									'				<img src="' + resp.items[key].snippet.thumbnails.maxres.url + '">' +
+									'			</div>' +
+									'		</div>' +
+									'	</div>' +
+									'</div>';
+							}
 						}	
 					}
 				});
