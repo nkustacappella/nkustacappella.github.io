@@ -118,7 +118,7 @@
 			// API說明: https://developers.google.com/youtube/v3/docs/playlists
 			var CHANNEL_ID = 'UCLSFLk5iIqWL2Ev6VDsmCZA'; //YouTube 頻道Id
 			function printPlayList(playlistId) {
-				var request = gapi.client.youtube.playlistItems.list({
+				var request = gapi.client.youtube.playlists.list({
 					'part': 'snippet,contentDetails',
 					'maxResults': 50,// 預設為五筆資料，可以設定1~50
 					'channelId': CHANNEL_ID
