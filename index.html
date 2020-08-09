@@ -36,7 +36,7 @@
 					'orderBy' : 'title_natural desc'
 				});
 				request.execute(function (resp) {
-					if(resp && resp.pageInfo.totalResults > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
+					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.items) {
 							document.getElementById('fileInfo').innerHTML +=
 								'<div class="col-md-4 col-sm-6">' +
@@ -79,7 +79,7 @@
 				
 				
 				request.execute(function (resp) {
-					if(resp && resp.pageInfo.totalResults > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
+					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.items) {
 							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
 								document.getElementById('videoInfo').innerHTML += 
@@ -116,7 +116,7 @@
 		<script>
 			// 播放清單展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlists
-			var CHANNEL_ID = 'PLK7wx6T9EnHN8loICnVqL7B4pH7jyhEhz'; //YouTube 頻道Id
+			var CHANNEL_ID = 'UCLSFLk5iIqWL2Ev6VDsmCZA'; //YouTube 頻道Id
 			function printPlayList(playlistId) {
 				var request = gapi.client.youtube.playlistItems.list({
 					'part': 'snippet,contentDetails',
@@ -126,7 +126,7 @@
 				
 				
 				request.execute(function (resp) {
-					if(resp && resp.pageInfo.totalResults > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
+					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.items) {
 							document.getElementById('playListInfo').innerHTML += 
 								'<div class="col-md-4 col-sm-6">' +
