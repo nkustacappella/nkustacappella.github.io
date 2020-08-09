@@ -60,6 +60,9 @@
 				});
 			}
 			
+			// YouTube推薦影片彈窗
+			var YOUTUBE_POP_VIDEO_ID = 'CBpi01t43ak'; //預設影片ID
+			
 			// 影片展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlistItems
 			var PLAYLIST_ID = 'PLK7wx6T9EnHN8loICnVqL7B4pH7jyhEhz'; //YouTube播放清單ID
@@ -76,7 +79,7 @@
 						for(var key in resp.items) {
 							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
 								//if(key !== 0) {
-									$("span.youtube-link").attr("youtubeid", "gOSnYSdAr34");
+									var YOUTUBE_POP_VIDEO_ID = 'gOSnYSdAr34';
 								//}
 								
 								document.getElementById('videoInfo').innerHTML += 
@@ -506,11 +509,10 @@
 		<!-- GRT Youtube Popup -->
 		<script src="./js/grt-youtube-popup.js"></script>
 		
-		<div id="topYouTube">
-		<span class="youtube-link" youtubeid="LFf5ZvepzSs"></span>
-		</div>
+		<span class="youtube-link" youtubeid=""></span>
 		<script type="text/javascript">
 				$(document).ready(function() {
+					$("span.youtube-link").attr("youtubeid", YOUTUBE_POP_VIDEO_ID);
 					$("span.youtube-link").grtyoutube({
 						autoPlay:false,
 						theme: "dark"
