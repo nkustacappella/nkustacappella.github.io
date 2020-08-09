@@ -80,8 +80,10 @@
 							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
 								if(resp.items[key].snippet.position == 0) {
 									console.log(key);
+									console.log(YOUTUBE_POP_VIDEO_ID);
 									var YOUTUBE_POP_VIDEO_ID = resp.items[key].contentDetails.videoId;
 								}
+									console.log(YOUTUBE_POP_VIDEO_ID);
 								
 								document.getElementById('videoInfo').innerHTML += 
 									'<div class="col-md-4 col-sm-6">' +
