@@ -90,7 +90,7 @@
 									'				<div class="hover-effect">' +
 									'					<div class="hover-content">' +
 									'						<h2>' + resp.items[key].snippet.title + '</h2>' +
-									'						<p>發布日期: ' + new Date('2017-07-09T00:00:00Z').toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'}) + '</p>' +
+									'						<p>發布日期: ' + new Date(resp.items[key].contentDetails.videoPublishedAt).toString('zh-TW', {timeZone: 'Asia/Taipei'}) + '</p>' +
 									'						<p>' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
 									'					</div>' +
 									'				</div>' +
