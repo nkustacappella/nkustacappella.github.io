@@ -59,14 +59,7 @@
 					}
 				});
 			}
-			function init() {
-				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
-				gapi.client.load('drive', 'v2').then(printFile);
-			}
-			gapi.load('client', init);
-		</script>
-		
-		<script>
+			
 			// 影片展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlistItems
 			var PLAYLIST_ID = 'PLK7wx6T9EnHN8loICnVqL7B4pH7jyhEhz'; //YouTube播放清單ID
@@ -106,14 +99,7 @@
 					}
 				});
 			}
-			function init() {
-				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
-				gapi.client.load('youtube', 'v3').then(printVideo);
-			}
-			gapi.load('client', init);
-		</script>
-		
-		<script>
+			
 			// 播放清單展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlists
 			var CHANNEL_ID = 'UCLSFLk5iIqWL2Ev6VDsmCZA'; //YouTube 頻道Id
@@ -152,6 +138,8 @@
 			}
 			function init() {
 				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
+				gapi.client.load('drive', 'v2').then(printFile);
+				gapi.client.load('youtube', 'v3').then(printVideo);
 				gapi.client.load('youtube', 'v3').then(printPlayList);
 			}
 			gapi.load('client', init);
@@ -214,10 +202,7 @@
 					<a href="#5"><i class="fa fa-video-camera"></i><em>影片展示</em></a>
 				</li>
 				<li>
-					<a href="#6"><i class="fa fa-envelope"></i><em>播放清單</em></a>
-				</li>
-				<li>
-					<a href="#7"><i class="fa fa-envelope"></i><em>聯絡我們</em></a>
+					<a href="#6"><i class="fa fa-envelope"></i><em>聯絡我們</em></a>
 				</li>
 			</ul>
 		</nav>
@@ -482,35 +467,6 @@
 				</div>
 			</div>
 			<div class="slide" id="6">
-				<div class="content fourth-content">
-					<div class="container-fluid">
-						<div class="row" id="playListInfo">
-							<!-- // CODE格式
-							<div class='col-md-4 col-sm-6'>
-								<div class='item'>
-									<div class='thumb'>
-										<a href='https://www.youtube.com/watch?v=8nf367667vs' target='_blank'>
-											<div class='hover-effect'>
-												<div class='hover-content'>
-													<h2>
-														Winter Wonderland | 2019 解憂耶誕夜
-													</h2>
-												</div>
-											</div>
-										</a>
-										<div class='image'>
-											<img src='https://img.youtube.com/vi/8nf367667vs/maxresdefault.jpg'>
-										</div>
-									</div>
-								</div>
-							</div>
-							-->
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="slide" id="7">
 				<div class="content fifth-content">
 					<div class="container-fluid">
 						<div class="col-md-6">
