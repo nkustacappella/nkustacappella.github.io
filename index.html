@@ -73,6 +73,8 @@
 					'playlistId': PLAYLIST_ID
 				});
 				
+				YOUTUBE_POP_VIDEO_ID = request.execute().items[0].contentDetails.videoId;
+				
 				
 				request.execute(function (resp) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
