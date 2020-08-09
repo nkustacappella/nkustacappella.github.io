@@ -515,7 +515,11 @@
 		<span class="youtube-link" youtubeid=""></span>
 		<script type="text/javascript">
 				$(document).ready(function() {
+					console.log(YOUTUBE_POP_VIDEO_ID);
+					console.log($("span.youtube-link").attr("youtubeid"));
+					
 					$("span.youtube-link").attr("youtubeid", YOUTUBE_POP_VIDEO_ID);
+					console.log($("span.youtube-link").attr("youtubeid"));
 					$("span.youtube-link").grtyoutube({
 						autoPlay:false,
 						theme: "dark"
