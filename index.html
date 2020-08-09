@@ -492,5 +492,26 @@
 		</div>
 		<!-- //FaceBook 洽談外掛程式 -->
 		
+		<!-- //YouTube推薦影片彈窗 -->
+		<!-- Jquery -->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		
+		<!-- GRT Youtube Plugin CSS -->
+		<link rel="stylesheet" href="./css/grt-youtube-popup.css">
+		
+		<!-- GRT Youtube Popup -->
+		<script src="./js/grt-youtube-popup.js"></script>
+		
+		<span class="youtube-link" youtubeid="gOSnYSdAr34"></span>
+		<script type="text/javascript">
+				$(document).ready(function() {
+					$("span.youtube-link").grtyoutube({
+						autoPlay:false,
+						theme: "dark"
+					}).click();
+				});
+		</script>
+		<!-- //YouTube推薦影片彈窗 -->
+		
 	</body>
 </html>
