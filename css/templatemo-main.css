@@ -694,6 +694,18 @@ nav a:hover::before {
 	background-color: #fff;
 }
 
+.fifth-content h2 {
+	color: #fff;
+}
+
+.fifth-content h4 {
+	color: #fff;
+}
+
+.fifth-content a {
+	color: #aaa;
+}
+
 .footer .content {
 	left: 30%;
 	width: 70%;
