@@ -62,7 +62,8 @@
 			
 			// YouTube推薦影片彈窗
 			//var YOUTUBE_POP_VIDEO_ID = 'CBpi01t43ak'; //預設影片ID
-			var YOUTUBE_POP_VIDEO_ID = 'gOSnYSdAr34'; //預設影片ID
+			// var YOUTUBE_POP_VIDEO_ID = 'gOSnYSdAr34';
+			var YOUTUBE_POP_VIDEO_ID = { value: 'CBpi01t43ak' }; //預設影片ID
 			
 			// 影片展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlistItems
@@ -75,14 +76,15 @@
 				});
 				
 				
-				request.execute(function (resp) {
+				request.execute(function (resp, obj) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.items) {
 							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
 								if(resp.items[key].snippet.position == 0) {
 									console.log(key);
 									console.log(YOUTUBE_POP_VIDEO_ID);
-									var YOUTUBE_POP_VIDEO_ID = resp.items[key].contentDetails.videoId;
+									//var YOUTUBE_POP_VIDEO_ID = resp.items[key].contentDetails.videoId;
+									obj.value = resp.items[key].contentDetails.videoId;
 								}
 									console.log(YOUTUBE_POP_VIDEO_ID);
 								
