@@ -84,7 +84,7 @@
 								<!-- //YouTube推薦影片彈窗 -->
 								//if(resp.items[key].snippet.position == 0) {
 								if(checkYouTubePoP == false) {
-									 $("body").append(
+									$("body").append(
 										'<div class="grtyoutube-popup grtyoutube-dark-theme">'+
 											'<div class="grtyoutube-popup-content">'+
 												'<span class="grtyoutube-popup-close"></span>'+
@@ -95,17 +95,17 @@
 
 									// Close the box on click or escape
 									$(this).on('click', function (event) {
-										event.preventDefault();
+										//event.preventDefault();
 										$(".grtyoutube-popup-close, .grtyoutube-popup").click(function(){
 											$(".grtyoutube-popup").remove();
 										});
 									});
-
 									$(document).keyup(function(event) {
 										if (event.keyCode == 27){
 											$(".grtyoutube-popup").remove();
 										}
 									});
+									
 									
 									checkYouTubePoP = true;
 									
@@ -126,7 +126,7 @@
 									'				</div>' +
 									'			</a>' +
 									'			<div class="image">' +
-									'				<img src="' + resp.items[key].snippet.thumbnails.maxres.url + '">' +
+									'				<img src="' + resp.items[key].snippet.thumbnails.medium.url + '">' +
 									'			</div>' +
 									'		</div>' +
 									'	</div>' +
@@ -137,7 +137,7 @@
 				});
 			}
 			
-			/*
+			
 			// 播放清單展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlists
 			var CHANNEL_ID = 'UCLSFLk5iIqWL2Ev6VDsmCZA'; //YouTube 頻道Id
@@ -165,7 +165,7 @@
 								'				</div>' +
 								'			</a>' +
 								'			<div class="image">' +
-								'				<img src="' + resp.items[key].snippet.thumbnails.maxres.url + '">' +
+								'				<img src="' + resp.items[key].snippet.thumbnails.medium.url + '">' +
 								'			</div>' +
 								'		</div>' +
 								'	</div>' +
@@ -174,12 +174,12 @@
 					}
 				});
 			}
-			*/
+			
 			function init() {
 				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
 				gapi.client.load('drive', 'v2').then(printFile);
 				gapi.client.load('youtube', 'v3').then(printVideo);
-				//gapi.client.load('youtube', 'v3').then(printPlayList);
+				gapi.client.load('youtube', 'v3').then(printPlayList);
 			}
 			gapi.load('client', init);
 		</script>
@@ -396,7 +396,36 @@
 			<div class="slide" id="5">
 				<div class="content fourth-content">
 					<div class="container-fluid">
+					
 						<div class="row" id="videoInfo">
+							<h2 style="color:white; font-weight:bold; text-align:center; text-decoration:underline;">推薦影片</h2>
+							<!-- // CODE格式
+							<div class='col-md-4 col-sm-6'>
+								<div class='item'>
+									<div class='thumb'>
+										<a href='https://www.youtube.com/watch?v=8nf367667vs' target='_blank'>
+											<div class='hover-effect'>
+												<div class='hover-content'>
+													<h2>
+														Winter Wonderland | 2019 解憂耶誕夜
+													</h2>
+												</div>
+											</div>
+										</a>
+										<div class='image'>
+											<img src='https://img.youtube.com/vi/8nf367667vs/maxresdefault.jpg'>
+										</div>
+									</div>
+								</div>
+							</div>
+							-->
+							
+						</div>
+						
+						<hr>
+						
+						<div class="row" id="playListInfo">
+							<h2 style="color:white; font-weight:bold; text-align:center; text-decoration:underline;">播放清單</h2>
 							<!-- // CODE格式
 							<div class='col-md-4 col-sm-6'>
 								<div class='item'>
