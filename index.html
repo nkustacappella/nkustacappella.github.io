@@ -25,6 +25,9 @@
 		
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 		
+		<!-- GRT Youtube Plugin CSS -->
+		<link rel="stylesheet" href="./css/grt-youtube-popup.css">
+		
 		<script src="https://apis.google.com/js/api.js"></script>
 		<script>
 			// 財報 JavaScript
@@ -60,10 +63,6 @@
 				});
 			}
 			
-			// YouTube推薦影片彈窗
-			//var YOUTUBE_POP_VIDEO_ID = 'CBpi01t43ak'; //預設影片ID
-			var YOUTUBE_POP_VIDEO_ID = 'gOSnYSdAr34'; //預設影片ID
-			
 			// 影片展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlistItems
 			var PLAYLIST_ID = 'PLK7wx6T9EnHN8loICnVqL7B4pH7jyhEhz'; //YouTube播放清單ID
@@ -77,14 +76,41 @@
 				
 				request.execute(function (resp) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
+					
+						var checkYouTubePoP = false;
+					
 						for(var key in resp.items) {
 							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
-								if(resp.items[key].snippet.position == 0) {
-									console.log(key);
-									console.log(YOUTUBE_POP_VIDEO_ID);
-									var YOUTUBE_POP_VIDEO_ID = resp.items[key].contentDetails.videoId;
+								<!-- //YouTube推薦影片彈窗 -->
+								//if(resp.items[key].snippet.position == 0) {
+								if(checkYouTubePoP == false) {
+									 $("body").append(
+										'<div class="grtyoutube-popup grtyoutube-dark-theme">'+
+											'<div class="grtyoutube-popup-content">'+
+												'<span class="grtyoutube-popup-close"></span>'+
+												'<iframe class="grtyoutube-iframe" src="https://www.youtube.com/embed/' + resp.items[key].contentDetails.videoId + '?rel=0&wmode=transparent&autoplay=1&iv_load_policy=3" allowfullscreen frameborder="0" allow="autoplay; fullscreen"></iframe>'+
+											'</div>'+
+										'</div>'
+									);
+
+									// Close the box on click or escape
+									$(this).on('click', function (event) {
+										event.preventDefault();
+										$(".grtyoutube-popup-close, .grtyoutube-popup").click(function(){
+											$(".grtyoutube-popup").remove();
+										});
+									});
+
+									$(document).keyup(function(event) {
+										if (event.keyCode == 27){
+											$(".grtyoutube-popup").remove();
+										}
+									});
+									
+									checkYouTubePoP = true;
+									
 								}
-									console.log(YOUTUBE_POP_VIDEO_ID);
+								<!-- //YouTube推薦影片彈窗 -->
 								
 								document.getElementById('videoInfo').innerHTML += 
 									'<div class="col-md-4 col-sm-6">' +
@@ -111,6 +137,7 @@
 				});
 			}
 			
+			/*
 			// 播放清單展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlists
 			var CHANNEL_ID = 'UCLSFLk5iIqWL2Ev6VDsmCZA'; //YouTube 頻道Id
@@ -147,11 +174,12 @@
 					}
 				});
 			}
+			*/
 			function init() {
-				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
+				gapi.client.setApiKey('AIzaSyC5VDORAj4raRajDr0IeOwuWacqYeqshK8'); //你的API金錀
 				gapi.client.load('drive', 'v2').then(printFile);
 				gapi.client.load('youtube', 'v3').then(printVideo);
-				gapi.client.load('youtube', 'v3').then(printPlayList);
+				//gapi.client.load('youtube', 'v3').then(printPlayList);
 			}
 			gapi.load('client', init);
 		</script>
@@ -502,32 +530,6 @@
 			logged_out_greeting="嗨~有需要什麼協助嗎?">
 		</div>
 		<!-- //FaceBook 洽談外掛程式 -->
-		
-		<!-- //YouTube推薦影片彈窗 -->
-		<!-- Jquery -->
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		
-		<!-- GRT Youtube Plugin CSS -->
-		<link rel="stylesheet" href="./css/grt-youtube-popup.css">
-		
-		<!-- GRT Youtube Popup -->
-		<script src="./js/grt-youtube-popup.js"></script>
-		
-		<span class="youtube-link" youtubeid=""></span>
-		<script type="text/javascript">
-				$(document).ready(function() {
-					console.log(YOUTUBE_POP_VIDEO_ID);
-					console.log($("span.youtube-link").attr("youtubeid"));
-					
-					$("span.youtube-link").attr("youtubeid", YOUTUBE_POP_VIDEO_ID);
-					console.log($("span.youtube-link").attr("youtubeid"));
-					$("span.youtube-link").grtyoutube({
-						autoPlay:false,
-						theme: "dark"
-					}).click();
-				});
-		</script>
-		<!-- //YouTube推薦影片彈窗 -->
 		
 	</body>
 </html>
