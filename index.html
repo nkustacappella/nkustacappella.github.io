@@ -381,7 +381,7 @@
 		
 		
 		<script src="https://apis.google.com/js/api.js"></script>
-		<script>
+		<script type="text/javascript">
 			// 財報 JavaScript
 			// API說明: https://developers.google.com/drive/api/v3/search-files
 			var FOLDER_ID = '1nJdGpbouxWvzhAEZILkvnCCwm0BnS5C4'; //Google資料夾ID
@@ -471,6 +471,8 @@
 				});
 			}
 			
+			
+			/*
 			// 播放清單展示 JavaScript
 			// API說明: https://developers.google.com/youtube/v3/docs/playlists
 			var CHANNEL_ID = 'UCLSFLk5iIqWL2Ev6VDsmCZA'; //YouTube 頻道Id
@@ -507,11 +509,12 @@
 					}
 				});
 			}
+			*/
 			function init() {
 				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
 				gapi.client.load('drive', 'v2').then(printFile);
 				gapi.client.load('youtube', 'v3').then(printVideo);
-				gapi.client.load('youtube', 'v3').then(printPlayList);
+				//gapi.client.load('youtube', 'v3').then(printPlayList);
 			}
 			gapi.load('client', init);
 		</script>
