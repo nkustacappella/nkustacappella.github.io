@@ -76,7 +76,7 @@
 				});
 				
 				
-				request.execute(function (resp, obj) {
+				request.execute(function (resp) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.items) {
 							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
@@ -85,7 +85,7 @@
 									console.log(YOUTUBE_POP_VIDEO_ID);
 									//var YOUTUBE_POP_VIDEO_ID = resp.items[key].contentDetails.videoId;
 									console.log('CCC');
-									obj.value = 'XXXXXXXX';
+									YOUTUBE_POP_VIDEO_ID.value = 'XXXXXXXX';
 									console.log(YOUTUBE_POP_VIDEO_ID);
 									console.log('CCC_END');
 								}
