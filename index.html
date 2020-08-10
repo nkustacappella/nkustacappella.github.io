@@ -25,6 +25,136 @@
 		
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 		
+		<script src="https://apis.google.com/js/api.js"></script>
+		<script>
+			// 財報 JavaScript
+			// API說明: https://developers.google.com/drive/api/v3/search-files
+			var FOLDER_ID = '1nJdGpbouxWvzhAEZILkvnCCwm0BnS5C4'; //Google資料夾ID
+			function printFile(fileId) {
+				var request = gapi.client.drive.files.list({
+					'q' : '"' + FOLDER_ID + '" in parents',
+					'orderBy' : 'title_natural desc'
+				});
+				request.execute(function (resp) {
+					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
+						for(var key in resp.items) {
+							document.getElementById('fileInfo').innerHTML +=
+								'<div class="col-md-4 col-sm-6">' +
+								'	<div class="item">' +
+								'		<div class="thumb">' +
+								'			<a href="https://drive.google.com/open?id=' + resp.items[key].id + '" target="_blank">' +
+								'				<div class="hover-effect">' +
+								'					<div class="hover-content">' +
+								'						<h2>' + resp.items[key].title + '</h2>' +
+								'					</div>' +
+								'				</div>' +
+								'			</a>' +
+								'			<div class="image">' +
+								'				<img src="https://drive.google.com/thumbnail?authuser=0&sz=w1500-h1000-p&id=' + resp.items[key].id + '">' +
+								'			</div>' +
+								'		</div>' +
+								'	</div>' +
+								'</div>'; 
+						}	
+					}
+				});
+			}
+			
+			// YouTube推薦影片彈窗
+			//var YOUTUBE_POP_VIDEO_ID = 'CBpi01t43ak'; //預設影片ID
+			var YOUTUBE_POP_VIDEO_ID = 'gOSnYSdAr34'; //預設影片ID
+			
+			// 影片展示 JavaScript
+			// API說明: https://developers.google.com/youtube/v3/docs/playlistItems
+			var PLAYLIST_ID = 'PLK7wx6T9EnHN8loICnVqL7B4pH7jyhEhz'; //YouTube播放清單ID
+			function printVideo(videoId) {
+				var request = gapi.client.youtube.playlistItems.list({
+					'part': 'snippet,contentDetails',
+					'maxResults': 50,// 預設為五筆資料，可以設定1~50
+					'playlistId': PLAYLIST_ID
+				});
+				
+				
+				request.execute(function (resp) {
+					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
+						for(var key in resp.items) {
+							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
+								if(resp.items[key].snippet.position == 0) {
+									console.log(key);
+									console.log(YOUTUBE_POP_VIDEO_ID);
+									var YOUTUBE_POP_VIDEO_ID = resp.items[key].contentDetails.videoId;
+								}
+									console.log(YOUTUBE_POP_VIDEO_ID);
+								
+								document.getElementById('videoInfo').innerHTML += 
+									'<div class="col-md-4 col-sm-6">' +
+									'	<div class="item">' +
+									'		<div class="thumb">' +
+									'			<a href="https://www.youtube.com/watch?v=' + resp.items[key].contentDetails.videoId + '" target="_blank">' +
+									'				<div class="hover-effect">' +
+									'					<div class="hover-content">' +
+									'						<h2>' + resp.items[key].snippet.title + '</h2>' +
+									'						<p>' + new Date(resp.items[key].contentDetails.videoPublishedAt).toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'}) + '</p>' +
+									'						<p>' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
+									'					</div>' +
+									'				</div>' +
+									'			</a>' +
+									'			<div class="image">' +
+									'				<img src="' + resp.items[key].snippet.thumbnails.maxres.url + '">' +
+									'			</div>' +
+									'		</div>' +
+									'	</div>' +
+									'</div>';
+							}
+						}	
+					}
+				});
+			}
+			
+			// 播放清單展示 JavaScript
+			// API說明: https://developers.google.com/youtube/v3/docs/playlists
+			var CHANNEL_ID = 'UCLSFLk5iIqWL2Ev6VDsmCZA'; //YouTube 頻道Id
+			function printPlayList(playlistId) {
+				var request = gapi.client.youtube.playlists.list({
+					'part': 'snippet,contentDetails',
+					'maxResults': 50,// 預設為五筆資料，可以設定1~50
+					'channelId': CHANNEL_ID
+				});
+				
+				
+				request.execute(function (resp) {
+					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
+						for(var key in resp.items) {
+							document.getElementById('playListInfo').innerHTML += 
+								'<div class="col-md-4 col-sm-6">' +
+								'	<div class="item">' +
+								'		<div class="thumb">' +
+								'			<a href="https://www.youtube.com/playlist?list=' + resp.items[key].id + '" target="_blank">' +
+								'				<div class="hover-effect">' +
+								'					<div class="hover-content">' +
+								'						<h2>' + resp.items[key].snippet.title + '</h2>' +
+								'						<p>' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
+								'					</div>' +
+								'				</div>' +
+								'			</a>' +
+								'			<div class="image">' +
+								'				<img src="' + resp.items[key].snippet.thumbnails.maxres.url + '">' +
+								'			</div>' +
+								'		</div>' +
+								'	</div>' +
+								'</div>';
+						}	
+					}
+				});
+			}
+			function init() {
+				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
+				gapi.client.load('drive', 'v2').then(printFile);
+				gapi.client.load('youtube', 'v3').then(printVideo);
+				gapi.client.load('youtube', 'v3').then(printPlayList);
+			}
+			gapi.load('client', init);
+		</script>
 		
 		<!-- //Google Search Console 驗證 -->
 		<meta name="google-site-verification" content="JalGPEDkPtE_Uwz9jfVznuVzJ8LIlQaKk175JX6YOAY" />
@@ -373,167 +503,6 @@
 		</div>
 		<!-- //FaceBook 洽談外掛程式 -->
 		
-		
-		
-		
-		
-		
-		
-		
-		<script src="https://apis.google.com/js/api.js"></script>
-		<script type="text/javascript">
-			// 財報 JavaScript
-			// API說明: https://developers.google.com/drive/api/v3/search-files
-			var FOLDER_ID = '1nJdGpbouxWvzhAEZILkvnCCwm0BnS5C4'; //Google資料夾ID
-			function printFile(fileId) {
-				var request = gapi.client.drive.files.list({
-					'q' : '"' + FOLDER_ID + '" in parents',
-					'orderBy' : 'title_natural desc'
-				});
-				request.execute(function (resp) {
-					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
-						for(var key in resp.items) {
-							document.getElementById('fileInfo').innerHTML +=
-								'<div class="col-md-4 col-sm-6">' +
-								'	<div class="item">' +
-								'		<div class="thumb">' +
-								'			<a href="https://drive.google.com/open?id=' + resp.items[key].id + '" target="_blank">' +
-								'				<div class="hover-effect">' +
-								'					<div class="hover-content">' +
-								'						<h2>' + resp.items[key].title + '</h2>' +
-								'					</div>' +
-								'				</div>' +
-								'			</a>' +
-								'			<div class="image">' +
-								'				<img src="https://drive.google.com/thumbnail?authuser=0&sz=w1500-h1000-p&id=' + resp.items[key].id + '">' +
-								'			</div>' +
-								'		</div>' +
-								'	</div>' +
-								'</div>'; 
-						}	
-					}
-				});
-			}
-			
-			// YouTube推薦影片彈窗
-			//var YOUTUBE_POP_VIDEO_ID = 'CBpi01t43ak'; //預設影片ID
-			// var YOUTUBE_POP_VIDEO_ID = 'gOSnYSdAr34';
-			var YOUTUBE_POP_VIDEO_ID = { value: 'CBpi01t43ak' }; //預設影片ID
-			
-			// 影片展示 JavaScript
-			// API說明: https://developers.google.com/youtube/v3/docs/playlistItems
-			var PLAYLIST_ID = 'PLK7wx6T9EnHN8loICnVqL7B4pH7jyhEhz'; //YouTube播放清單ID
-			function printVideo(videoId) {
-				var request = gapi.client.youtube.playlistItems.list({
-					'part': 'snippet,contentDetails',
-					'maxResults': 50,// 預設為五筆資料，可以設定1~50
-					'playlistId': PLAYLIST_ID
-				});
-				
-				
-				request.execute(function (resp) {
-					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
-						for(var key in resp.items) {
-							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
-								if(resp.items[key].snippet.position == 0) {
-									console.log(key);
-									console.log(YOUTUBE_POP_VIDEO_ID);
-									//var YOUTUBE_POP_VIDEO_ID = resp.items[key].contentDetails.videoId;
-									console.log('CCC');
-									YOUTUBE_POP_VIDEO_ID.value = resp.items[key].contentDetails.videoId;
-									$("span.youtube-link").attr("youtubeid", resp.items[key].contentDetails.videoId);
-									console.log(YOUTUBE_POP_VIDEO_ID);
-									console.log('CCC_END');
-								}
-								
-								document.getElementById('videoInfo').innerHTML += 
-									'<div class="col-md-4 col-sm-6">' +
-									'	<div class="item">' +
-									'		<div class="thumb">' +
-									'			<a href="https://www.youtube.com/watch?v=' + resp.items[key].contentDetails.videoId + '" target="_blank">' +
-									'				<div class="hover-effect">' +
-									'					<div class="hover-content">' +
-									'						<h2>' + resp.items[key].snippet.title + '</h2>' +
-									'						<p>' + new Date(resp.items[key].contentDetails.videoPublishedAt).toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'}) + '</p>' +
-									'						<p>' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
-									'					</div>' +
-									'				</div>' +
-									'			</a>' +
-									'			<div class="image">' +
-									'				<img src="' + resp.items[key].snippet.thumbnails.maxres.url + '">' +
-									'			</div>' +
-									'		</div>' +
-									'	</div>' +
-									'</div>';
-							}
-						}	
-					}
-				});
-			}
-			
-			
-			/*
-			// 播放清單展示 JavaScript
-			// API說明: https://developers.google.com/youtube/v3/docs/playlists
-			var CHANNEL_ID = 'UCLSFLk5iIqWL2Ev6VDsmCZA'; //YouTube 頻道Id
-			function printPlayList(playlistId) {
-				var request = gapi.client.youtube.playlists.list({
-					'part': 'snippet,contentDetails',
-					'maxResults': 50,// 預設為五筆資料，可以設定1~50
-					'channelId': CHANNEL_ID
-				});
-				
-				
-				request.execute(function (resp) {
-					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
-						for(var key in resp.items) {
-							document.getElementById('playListInfo').innerHTML += 
-								'<div class="col-md-4 col-sm-6">' +
-								'	<div class="item">' +
-								'		<div class="thumb">' +
-								'			<a href="https://www.youtube.com/playlist?list=' + resp.items[key].id + '" target="_blank">' +
-								'				<div class="hover-effect">' +
-								'					<div class="hover-content">' +
-								'						<h2>' + resp.items[key].snippet.title + '</h2>' +
-								'						<p>' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
-								'					</div>' +
-								'				</div>' +
-								'			</a>' +
-								'			<div class="image">' +
-								'				<img src="' + resp.items[key].snippet.thumbnails.maxres.url + '">' +
-								'			</div>' +
-								'		</div>' +
-								'	</div>' +
-								'</div>';
-						}	
-					}
-				});
-			}
-			*/
-			function init() {
-				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
-				gapi.client.load('drive', 'v2').then(printFile);
-				gapi.client.load('youtube', 'v3').then(printVideo);
-				//gapi.client.load('youtube', 'v3').then(printPlayList);
-			}
-			gapi.load('client', init);
-		</script>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		<!-- //YouTube推薦影片彈窗 -->
 		<!-- Jquery -->
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -546,17 +515,17 @@
 		
 		<span class="youtube-link" youtubeid=""></span>
 		<script type="text/javascript">
-				//$(document).ready(function() {
+				$(document).ready(function() {
 					console.log(YOUTUBE_POP_VIDEO_ID);
 					console.log($("span.youtube-link").attr("youtubeid"));
 					
-					//$("span.youtube-link").attr("youtubeid", YOUTUBE_POP_VIDEO_ID.value);
+					$("span.youtube-link").attr("youtubeid", YOUTUBE_POP_VIDEO_ID);
 					console.log($("span.youtube-link").attr("youtubeid"));
 					$("span.youtube-link").grtyoutube({
 						autoPlay:false,
 						theme: "dark"
 					}).click();
-				//});
+				});
 		</script>
 		<!-- //YouTube推薦影片彈窗 -->
 		
