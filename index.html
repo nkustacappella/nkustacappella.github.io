@@ -86,6 +86,7 @@
 									//var YOUTUBE_POP_VIDEO_ID = resp.items[key].contentDetails.videoId;
 									console.log('CCC');
 									YOUTUBE_POP_VIDEO_ID.value = resp.items[key].contentDetails.videoId;
+									$("span.youtube-link").attr("youtubeid", resp.items[key].contentDetails.videoId);
 									console.log(YOUTUBE_POP_VIDEO_ID);
 									console.log('CCC_END');
 								}
@@ -523,7 +524,7 @@
 					console.log(YOUTUBE_POP_VIDEO_ID);
 					console.log($("span.youtube-link").attr("youtubeid"));
 					
-					$("span.youtube-link").attr("youtubeid", YOUTUBE_POP_VIDEO_ID.value);
+					//$("span.youtube-link").attr("youtubeid", YOUTUBE_POP_VIDEO_ID.value);
 					console.log($("span.youtube-link").attr("youtubeid"));
 					$("span.youtube-link").grtyoutube({
 						autoPlay:false,
