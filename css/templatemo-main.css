@@ -841,8 +841,10 @@ nav a:hover::before {
 	
 	.fourth-content .item .hover-effect p {
 		font-size: 10px;
-		overflow:hidden;
-		white-space: normal;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 
