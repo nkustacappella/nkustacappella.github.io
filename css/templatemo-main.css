@@ -835,7 +835,7 @@ nav a:hover::before {
 	.fourth-content .item .hover-effect h2 {
 		font-size: 15px;
 		overflow:hidden;
-		white-space: nowrap;
+		white-space: normal;
 		text-overflow: ellipsis;
 	}
 	
@@ -872,7 +872,7 @@ nav a:hover::before {
 	.fourth-content .item .hover-effect h2 {
 		font-size: 12px;
 		overflow:hidden;
-		white-space: nowrap;
+		white-space: normal;
 		text-overflow: ellipsis;
 	}
 	
