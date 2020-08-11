@@ -25,15 +25,15 @@
 		<link rel="stylesheet" href="css/light-box.css">
 		<link rel="stylesheet" href="css/templatemo-main.css">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-		<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+		<script async src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 		
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 		
 		<!-- GRT Youtube Plugin CSS -->
 		<link rel="stylesheet" href="./css/grt-youtube-popup.css">
 		
-		<script src="https://apis.google.com/js/api.js"></script>
-		<script>
+		<script async src="https://apis.google.com/js/api.js"></script>
+		<script async>
 			// 財報 JavaScript
 			// API說明: https://developers.google.com/drive/api/v3/search-files
 			var FOLDER_ID = '1nJdGpbouxWvzhAEZILkvnCCwm0BnS5C4'; //Google資料夾ID
@@ -195,8 +195,8 @@
 		<!-- //Google Analytics 驗證 -->
 		<!-- //Google Analytics 追蹤碼 -->
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-146412918-1"></script>
-		<script>
+		<script async async src="https://www.googletagmanager.com/gtag/js?id=UA-146412918-1"></script>
+		<script async>
 		  window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
@@ -480,7 +480,7 @@
 		<div class="footer">
 			<div class="content">
 				<p id="footerCopyright">
-					<script type="text/javascript">
+					<script async type="text/javascript">
 						document.getElementById('footerCopyright').innerHTML = "Copyright &copy; 2015-" + new Date().getFullYear();
 					</script>
 					<a href="https://fb.me/nkustAcappella" target="_blank"> 國立高雄科技大學 A CAPPELLA 社 </a> | Powered by <a href="mailto:c107118223@nkust.edu.tw@nkust.edu.tw"> Chen, Hsin-Wei </a> | Designed by TemplateMo(Moonlight) | <a href="https://github.com/nkustacappella/nkustacappella.github.io" target="_blank"> GitHub </a>
@@ -492,14 +492,14 @@
 			-->
 		</div>
 		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		
-		<script src="js/vendor/bootstrap.min.js"></script>
+		<script async src="js/vendor/bootstrap.min.js"></script>
 		
-		<script src="js/datepicker.js"></script>
-		<script src="js/main.js"></script>
+		<script async src="js/datepicker.js"></script>
+		<script async src="js/main.js"></script>
 		
-		<script type="text/javascript">
+		<script async type="text/javascript">
 			$(document).ready(function() {
 
 				
@@ -542,7 +542,7 @@
 		<!-- //FaceBook 洽談外掛程式 -->
 		<!-- Load Facebook SDK for JavaScript -->
 		<div id="fb-root"></div>
-		<script>
+		<script async>
 			window.fbAsyncInit = function() {
 			FB.init({
 				xfbml            : true,
