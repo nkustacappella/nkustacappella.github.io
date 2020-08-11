@@ -43,16 +43,16 @@
 					'q' : '\"' + FOLDER_ID + '\" in parents'
 				});
 				request.execute(function (resp) {
-					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
-						for(var key in resp.items) {
+					if(resp && resp.files.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
+						for(var key in resp.files) {
 							document.getElementById('fileInfo').innerHTML +=
 								'<div class="col-md-4 col-sm-6">' +
 								'	<div class="item">' +
 								'		<div class="thumb">' +
-								'			<a href="https://drive.google.com/open?id=' + resp.items[key].id + '" target="_blank">' +
+								'			<a href="https://drive.google.com/open?id=' + resp.files[key].id + '" target="_blank">' +
 								'				<div class="hover-effect">' +
 								'					<div class="hover-content">' +
-								'						<h2>' + resp.items[key].title + '</h2>' +
+								'						<h2>' + resp.files[key].title + '</h2>' +
 								'					</div>' +
 								'				</div>' +
 								'			</a>' +
