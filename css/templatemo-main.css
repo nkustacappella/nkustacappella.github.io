@@ -608,6 +608,10 @@ nav a:hover::before {
 	padding-bottom: 10px;
 	margin-bottom: 10px;
 	margin-top: 0px;
+	
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .fourth-content .item .hover-effect p {
@@ -840,9 +844,6 @@ nav a:hover::before {
 
 	.fourth-content .item .hover-effect h2 {
 		font-size: 15px;
-		overflow:hidden;
-		white-space: normal;
-		text-overflow: ellipsis;
 	}
 	
 	.fourth-content .item .hover-effect p {
@@ -877,9 +878,6 @@ nav a:hover::before {
 	
 	.fourth-content .item .hover-effect h2 {
 		font-size: 12px;
-		overflow:hidden;
-		white-space: normal;
-		text-overflow: ellipsis;
 	}
 	
 	.fourth-content .item .hover-effect p {
