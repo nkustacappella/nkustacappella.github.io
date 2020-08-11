@@ -338,7 +338,7 @@ nav a:hover::before {
 	margin-right: 35px;
 }
 
-.first-content h2 {
+.first-content h1 {
 	font-size: 36px;
 	text-transform: uppercase;
 	font-weight: 700;
