@@ -604,7 +604,6 @@ nav a:hover::before {
 	color: #fff;
 	letter-spacing: 0.5px;
 	border-bottom: 1px solid #fff;
-	display: inline-block;
 	padding-bottom: 10px;
 	margin-bottom: 10px;
 	margin-top: 0px;
