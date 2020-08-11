@@ -39,8 +39,8 @@
 			var FOLDER_ID = '1nJdGpbouxWvzhAEZILkvnCCwm0BnS5C4'; //Google資料夾ID
 			function printFile(fileId) {
 				var request = gapi.client.drive.files.list({
+					'orderBy' : 'name_natural desc'
 					'q' : '"' + FOLDER_ID + '" in parents',
-					'orderBy' : 'title_natural desc'
 				});
 				request.execute(function (resp) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
@@ -181,7 +181,7 @@
 			
 			function init() {
 				gapi.client.setApiKey('AIzaSyA8CXP5C2SlqRmr6degbeiEGummSJZsKtg'); //你的API金錀
-				gapi.client.load('drive', 'v2').then(printFile);
+				gapi.client.load('drive', 'v3').then(printFile);
 				gapi.client.load('youtube', 'v3').then(printVideo);
 				gapi.client.load('youtube', 'v3').then(printPlayList);
 			}
