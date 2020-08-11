@@ -124,7 +124,7 @@
 									'					<div class="hover-content">' +
 									'						<h2>' + resp.items[key].snippet.title + '</h2>' +
 									'						<p>' + new Date(resp.items[key].contentDetails.videoPublishedAt).toLocaleString('zh-TW', {timeZone: 'Asia/Taipei'}) + '</p>' +
-									'						<p>' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
+									'						<p class="hide-in-mobile">' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
 									'					</div>' +
 									'				</div>' +
 									'			</a>' +
@@ -163,7 +163,7 @@
 								'				<div class="hover-effect">' +
 								'					<div class="hover-content">' +
 								'						<h2>' + resp.items[key].snippet.title + '</h2>' +
-								'						<p>' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
+								'						<p class="hide-in-mobile">' + resp.items[key].snippet.description.substr(0, 50) + '......</p>' +
 								'					</div>' +
 								'				</div>' +
 								'			</a>' +

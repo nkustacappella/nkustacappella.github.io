@@ -857,4 +857,6 @@ nav a:hover::before {
 	nav a {
 	  	padding: 15px 20px;
 	}
+	
+	.hide-in-mobile{display:none;}
 }
