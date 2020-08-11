@@ -39,8 +39,8 @@
 			var FOLDER_ID = '1nJdGpbouxWvzhAEZILkvnCCwm0BnS5C4'; //Google資料夾ID
 			function printFile(fileId) {
 				var request = gapi.client.drive.files.list({
-					'orderBy' : 'name_natural desc'
-					'q' : '\"' + FOLDER_ID + '\" in parents',
+					'orderBy' : 'name_natural desc',
+					'q' : '\"' + FOLDER_ID + '\" in parents'
 				});
 				request.execute(function (resp) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
