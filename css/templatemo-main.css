@@ -841,6 +841,9 @@ nav a:hover::before {
 	
 	.fourth-content .item .hover-effect p {
 		font-size: 10px;
+		overflow:hidden;
+		white-space: normal;
+		text-overflow: ellipsis;
 	}
 
 
