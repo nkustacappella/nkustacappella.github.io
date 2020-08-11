@@ -835,6 +835,10 @@ nav a:hover::before {
 	.fourth-content .item .hover-effect h2 {
 		font-size: 15px;
 	}
+	
+	.fourth-content .item .hover-effect p {
+		font-size: 10px;
+	}
 
 
 	.fifth-content #map {
@@ -858,5 +862,15 @@ nav a:hover::before {
 	  	padding: 15px 20px;
 	}
 	
-	.hide-in-mobile{display:none;}
+	.hide-in-mobile{
+		display:none;
+	}
+	
+	.fourth-content .item .hover-effect h2 {
+		font-size: 12px;
+	}
+	
+	.fourth-content .item .hover-effect p {
+		display:none;
+	}
 }
