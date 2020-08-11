@@ -40,7 +40,7 @@
 			function printFile(fileId) {
 				var request = gapi.client.drive.files.list({
 					'orderBy' : 'name_natural desc'
-					'q' : '"' + FOLDER_ID + '" in parents',
+					'q' : '\"' + FOLDER_ID + '\" in parents',
 				});
 				request.execute(function (resp) {
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
