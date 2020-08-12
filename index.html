@@ -86,32 +86,39 @@
 							if(resp.items[key].snippet.title !== 'Private video') { //非私人影片才會顯示，要不然會噴錯
 								<!-- //YouTube推薦影片彈窗 -->
 								//if(resp.items[key].snippet.position == 0) {
-								if(checkYouTubePoP == false) {
-									$("body").append(
-										'<div class="grtyoutube-popup grtyoutube-dark-theme">'+
-											'<div class="grtyoutube-popup-content">'+
-												'<span class="grtyoutube-popup-close"></span>'+
-												'<iframe loading="lazy" class="grtyoutube-iframe" src="https://www.youtube.com/embed/' + resp.items[key].contentDetails.videoId + '?rel=0&wmode=transparent&autoplay=1&iv_load_policy=3" allowfullscreen frameborder="0" allow="autoplay; fullscreen"></iframe>'+
-											'</div>'+
-										'</div>'
-									);
+								var arr = document.cookie.match(new RegExp("(^| )"   checkYouTubePoPCookie   "=([^;]*)(;|$)"));
+								if( (arr == null) || (arrarr[2] == false) ) {
+									var Days = 30;//此 cookie 將被儲存 30 天
+									var exp = new Date();//new Date("December 31, 9998");
+									exp.setTime(exp.getTime()   Days*24*60*60*1000);
+									document.cookie = checkYouTubePoPCookie   "="  escape (true)   ";expires="   exp.toGMTString();
+									if(checkYouTubePoP == false) {
+										$("body").append(
+											'<div class="grtyoutube-popup grtyoutube-dark-theme">'+
+												'<div class="grtyoutube-popup-content">'+
+													'<span class="grtyoutube-popup-close"></span>'+
+													'<iframe loading="lazy" class="grtyoutube-iframe" src="https://www.youtube.com/embed/' + resp.items[key].contentDetails.videoId + '?rel=0&wmode=transparent&autoplay=1&iv_load_policy=3" allowfullscreen frameborder="0" allow="autoplay; fullscreen"></iframe>'+
+												'</div>'+
+											'</div>'
+										);
 
-									// Close the box on click or escape
-									$(this).on('click', function (event) {
-										//event.preventDefault();
-										$(".grtyoutube-popup-close, .grtyoutube-popup").click(function(){
-											$(".grtyoutube-popup").remove();
+										// Close the box on click or escape
+										$(this).on('click', function (event) {
+											//event.preventDefault();
+											$(".grtyoutube-popup-close, .grtyoutube-popup").click(function(){
+												$(".grtyoutube-popup").remove();
+											});
 										});
-									});
-									$(document).keyup(function(event) {
-										if (event.keyCode == 27){
-											$(".grtyoutube-popup").remove();
-										}
-									});
-									
-									
-									checkYouTubePoP = true;
-									
+										$(document).keyup(function(event) {
+											if (event.keyCode == 27){
+												$(".grtyoutube-popup").remove();
+											}
+										});
+										
+										
+										checkYouTubePoP = true;
+										
+									}
 								}
 								<!-- //YouTube推薦影片彈窗 -->
 								
