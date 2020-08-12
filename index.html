@@ -88,10 +88,13 @@
 								//if(resp.items[key].snippet.position == 0) {
 								var arr = document.cookie.match(new RegExp('(^| ) checkYouTubePoPCookie =([^;]*)(;|$)'));
 								if( (arr == null) || (arrarr[2] == false) ) {
-									var Days = 30;//此 cookie 將被儲存 30 天
-									var exp = new Date();//new Date("December 31, 9998");
-									exp.setTime(exp.getTime()   Days*24*60*60*1000);
-									document.cookie = 'checkYouTubePoPCookie = true ;expires=' exp.toGMTString();
+								
+									var days = 30;//此 cookie 將被儲存 30 天
+									var date = new Date();
+									date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+									document.cookie = 'checkYouTubePoPCookie=true; expires=' + date.toGMTString() + '; path=/';
+									
+									
 									if(checkYouTubePoP == false) {
 										$("body").append(
 											'<div class="grtyoutube-popup grtyoutube-dark-theme">'+
