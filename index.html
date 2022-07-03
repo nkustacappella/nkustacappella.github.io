@@ -45,7 +45,7 @@
 					if(resp && resp.files.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.files) {
 							document.getElementById('fileInfo').innerHTML +=
-								'<div class="col-md-4 col-sm-6">' +
+								'<div class="col-md-3 col-sm-6">' +
 								'	<div class="item">' +
 								'		<div class="thumb">' +
 								'			<a href="https://drive.google.com/open?id=' + resp.files[key].id + '" target="_blank">' +
@@ -142,7 +142,7 @@
 								<!-- //YouTube推薦影片彈窗 -->
 								
 								document.getElementById('videoInfo').innerHTML += 
-									'<div class="col-md-4 col-sm-6">' +
+									'<div class="col-md-3 col-sm-6">' +
 									'	<div class="item">' +
 									'		<div class="thumb">' +
 									'			<a href="https://www.youtube.com/watch?v=' + resp.items[key].contentDetails.videoId + '" target="_blank">' +
@@ -182,7 +182,7 @@
 					if(resp && resp.items.length > 0) { //如果resp物件不是空的話 而且 resp.items項目元素大於0的話
 						for(var key in resp.items) {
 							document.getElementById('playListInfo').innerHTML += 
-								'<div class="col-md-4 col-sm-6">' +
+								'<div class="col-md-3 col-sm-6">' +
 								'	<div class="item">' +
 								'		<div class="thumb">' +
 								'			<a href="https://www.youtube.com/playlist?list=' + resp.items[key].id + '" target="_blank">' +
